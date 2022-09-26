@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,6 @@ namespace APC.MVVM.Model
     public class Repair
     {
         private int _id;
-
         public int ID
         {
             get { return _id; }

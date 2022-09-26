@@ -1,0 +1,94 @@
+﻿<metro:MetroWindow
+    x:Class="APC.MVVM.View.AdminWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convert="clr-namespace:APC.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:APC.MVVM.ViewModel"
+    xmlns:local="clr-namespace:APC"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+    Title="Администратор"
+    Width="800"
+    Height="450"
+    Background="{DynamicResource ThemeBase}"
+    Foreground="{DynamicResource TextPrimary}"
+    GlowBrush="{DynamicResource Primary700S}"
+    NonActiveGlowBrush="{DynamicResource InfoCaution}"
+    NonActiveWindowTitleBrush="{DynamicResource ThemeBase}"
+    ResizeMode="CanResizeWithGrip"
+    TitleForeground="{DynamicResource TextPrimary}"
+    WindowStartupLocation="CenterScreen"
+    WindowTitleBrush="{DynamicResource ThemeBase}"
+    mc:Ignorable="d">
+    <metro:MetroWindow.Resources>
+        <convert:ListItemToStringConverter x:Key="ItemToStringConverter" />
+    </metro:MetroWindow.Resources>
+    <metro:MetroWindow.DataContext>
+        <data:AdminViewModel />
+    </metro:MetroWindow.DataContext>
+    <Grid>
+        <DataGrid x:Name="WorkspaceGrid" Margin="0,0,160,22" />
+        <StatusBar
+            Height="22"
+            VerticalAlignment="Bottom"
+            Background="{DynamicResource Primary700S}" />
+        <Label
+            Height="22"
+            Margin="0,0,400,0"
+            VerticalAlignment="Bottom"
+            VerticalContentAlignment="Top"
+            Content="{Binding ElementName=WorkspaceGrid, Path=SelectedItem, Converter={StaticResource ItemToStringConverter}}"
+            FontSize="9"
+            Foreground="White" />
+        <local:InfoBar
+            x:Name="InfoBarAdmin"
+            Margin="0,-89,0,0"
+            VerticalAlignment="Top"
+            x:FieldModifier="public" />
+        <RadioButton
+            Width="160"
+            Height="42"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Command="{Binding LoadCarsCommand}"
+            CommandParameter="{Binding ElementName=WorkspaceGrid}"
+            Content="Машины"
+            Style="{DynamicResource CustomRadioButton}" />
+        <RadioButton
+            Width="160"
+            Height="41"
+            Margin="0,42,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Command="{Binding LoadDeparturesCommand}"
+            CommandParameter="{Binding ElementName=WorkspaceGrid}"
+            Content="Выезд"
+            Style="{DynamicResource CustomRadioButton}" />
+        <RadioButton
+            Width="160"
+            Height="42"
+            Margin="0,82,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Command="{Binding LoadRepairCommand}"
+            CommandParameter="{Binding ElementName=WorkspaceGrid}"
+            Content="Ремонт"
+            Style="{DynamicResource CustomRadioButton}" />
+        <Button
+            Width="150"
+            Height="28"
+            Margin="0,0,5,30"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Command="{Binding SaveChangesCommand}"
+            Content="Сохранить"
+            Style="{DynamicResource DefaultButton}" />
+    </Grid>
+</metro:MetroWindow>

@@ -1,0 +1,81 @@
+﻿<metro:MetroWindow
+    x:Class="APC.MVVM.View.ChangeSecurity"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:APC.MVVM.ViewModel"
+    xmlns:local="clr-namespace:APC.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+    Title="Защита"
+    Width="473"
+    Height="251"
+    Background="{DynamicResource ThemeBase}"
+    Foreground="{DynamicResource TextPrimary}"
+    GlowBrush="{DynamicResource Primary700S}"
+    NonActiveGlowBrush="{DynamicResource InfoCaution}"
+    NonActiveWindowTitleBrush="{DynamicResource ThemeBase}"
+    ResizeMode="NoResize"
+    TitleForeground="{DynamicResource TextPrimary}"
+    WindowStartupLocation="CenterScreen"
+    WindowTitleBrush="{DynamicResource ThemeBase}"
+    mc:Ignorable="d">
+    <metro:MetroWindow.DataContext>
+        <data:SecurityViewModel />
+    </metro:MetroWindow.DataContext>
+    <Grid>
+        <TextBox
+            x:Name="PasswordBox"
+            Height="34"
+            Margin="140,68,20,0"
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
+            Style="{DynamicResource DefaultTextBox}" />
+        <Label
+            Margin="0,25,0,0"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Создание нового пароля"
+            FontFamily="Segoe UI"
+            FontSize="16"
+            FontWeight="Medium" />
+
+        <TextBox
+            x:Name="PassordHelper"
+            Height="35"
+            Margin="140,119,20,0"
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
+            Style="{DynamicResource DefaultTextBox}"
+            Text="{Binding PassHelper}" />
+        <Label
+            Width="115"
+            Margin="20,71,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Пароль"
+            FontFamily="Segoe UI"
+            FontSize="14" />
+        <Label
+            Width="115"
+            Margin="20,122,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Подсказка"
+            FontFamily="Segoe UI"
+            FontSize="14" />
+        <Label
+            Margin="538,92,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Label" />
+        <Button
+            Height="27"
+            Margin="151,0,151,25"
+            VerticalAlignment="Bottom"
+            Command="{Binding ChangePasswordCommand}"
+            CommandParameter="{Binding ElementName=PasswordBox}"
+            Content="Принять"
+            Style="{DynamicResource DefaultButton}" />
+    </Grid>
+</metro:MetroWindow>

@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace APC.MVVM.View
 {
     /// <summary>
     /// Interaction logic for DepartureWindow.xaml
     /// </summary>
-    public partial class DepartureWindow : Window
+    public partial class DepartureWindow : MetroWindow
     {
         public DepartureWindow()
         {

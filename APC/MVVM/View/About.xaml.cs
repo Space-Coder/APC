@@ -11,21 +11,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using APC.MVVM.View;
 using MahApps.Metro.Controls;
 
-namespace APC
+namespace APC.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for About.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class About : MetroWindow
     {
-        public MainWindow()
+        public About()
         {
             InitializeComponent();
+            InfoLabel.Content = $"APC ver. {Assembly.GetExecutingAssembly().GetName().Version.ToString()}, Copyright \u00A9 Spacecoder 2022";
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(e.Uri.ToString());
         }
     }
 }

@@ -1,0 +1,74 @@
+﻿<metro:MetroWindow
+    x:Class="APC.MVVM.View.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:APC.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:APC.MVVM.ViewModel"
+    xmlns:local="clr-namespace:APC.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+    Title="О программе"
+    Width="600"
+    Height="314"
+    Background="{DynamicResource ThemeBase}"
+    Foreground="{DynamicResource TextPrimary}"
+    GlowBrush="{DynamicResource Primary700S}"
+    NonActiveGlowBrush="{DynamicResource InfoCaution}"
+    NonActiveWindowTitleBrush="{DynamicResource ThemeBase}"
+    ResizeMode="NoResize"
+    TitleForeground="{DynamicResource TextPrimary}"
+    WindowStartupLocation="CenterScreen"
+    WindowTitleBrush="{DynamicResource ThemeBase}"
+    mc:Ignorable="d">
+    <Grid>
+        <Image
+            Height="220"
+            Margin="-19,19,383,0"
+            VerticalAlignment="Top"
+            Source="pack://application:,,,/Resources/Images/apclogo.png"
+            Stretch="UniformToFill" />
+        <Label
+            Height="47"
+            Margin="195,26,40,0"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Auto Park Control"
+            FontFamily="Segoe UI"
+            FontSize="28"
+            FontWeight="ExtraBlack"
+            Foreground="{DynamicResource TextPrimary}" />
+        <TextBlock
+            Height="59"
+            Margin="195,86,40,0"
+            VerticalAlignment="Top"
+            FontFamily="Segoe UI"
+            FontSize="14"
+            Foreground="{DynamicResource TextSecondary}"
+            Text="Приложение для управления автомобильным парком Брестской Краснознаменной пограничной группы имени Ф.Э. Дзержинского"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Height="95"
+            Margin="195,150,40,0"
+            VerticalAlignment="Top"
+            FontFamily="Segoe UI"
+            FontSize="14"
+            Foreground="{DynamicResource TextSecondary}"
+            TextWrapping="Wrap">
+            Ссылка на GitHub:<Hyperlink NavigateUri="http://somesite.example" RequestNavigate="Hyperlink_RequestNavigate">APC Source code</Hyperlink>
+            <LineBreak />
+            <LineBreak />
+            Контакты:<LineBreak />
+            Telegram:<Hyperlink NavigateUri="http://somesite.example" RequestNavigate="Hyperlink_RequestNavigate">t.me/Eric_Orwell</Hyperlink>
+            <LineBreak />
+            E-mail:<Hyperlink NavigateUri="http://somesite.example" RequestNavigate="Hyperlink_RequestNavigate">aleks-bobr07@live.com</Hyperlink>
+        </TextBlock>
+        <Label
+            x:Name="InfoLabel"
+            Height="25"
+            VerticalAlignment="Bottom"
+            VerticalContentAlignment="Center"
+            FontSize="10"
+            Foreground="{DynamicResource TextDisabled}" />
+    </Grid>
+</metro:MetroWindow>

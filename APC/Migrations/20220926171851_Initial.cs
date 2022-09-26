@@ -37,26 +37,13 @@ namespace APC.Migrations
                     Senior = table.Column<string>(nullable: true),
                     Tachometer = table.Column<int>(nullable: false),
                     DepartureTime = table.Column<DateTime>(nullable: false),
-                    TachometerEnd = table.Column<int>(nullable: false),
-                    ArrivalTime = table.Column<DateTime>(nullable: false),
+                    TachometerEnd = table.Column<int>(nullable: true),
+                    ArrivalTime = table.Column<DateTime>(nullable: true),
                     Status = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departures", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Drivers",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FIO = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Drivers", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,18 +63,12 @@ namespace APC.Migrations
                     table.PrimaryKey("PK_Repair", x => x.ID);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Seniors",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FIO = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Seniors", x => x.ID);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_Cars_Number",
+                table: "Cars",
+                column: "Number",
+                unique: true,
+                filter: "[Number] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -99,13 +80,7 @@ namespace APC.Migrations
                 name: "Departures");
 
             migrationBuilder.DropTable(
-                name: "Drivers");
-
-            migrationBuilder.DropTable(
                 name: "Repair");
-
-            migrationBuilder.DropTable(
-                name: "Seniors");
         }
     }
 }

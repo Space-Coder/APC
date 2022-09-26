@@ -66,7 +66,64 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="4" />
                         <ScrollViewer
-                            x:Name="PART_ContetnHost"
+                            x:Name="PART_ContentHost"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Opacity="0.77" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ThemeControlFillPressed}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource Primary700S}" />
+                            <Setter Property="BorderThickness" Value="2" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ThemeControlFillPressed}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource Primary500S}" />
+                            <Setter Property="BorderThickness" Value="2" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ThemeControlFillPressed}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource Primary500S}" />
+                            <Setter Property="BorderThickness" Value="2" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.56" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ThemeControlStroke}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="DefaultPasswordBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource ThemeControlFill}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeControlStrongStroke}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource Primary700S}" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Grid>
+                        <Border
+                            x:Name="BackgroundBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="4"
+                            Opacity="0.1" />
+                        <Border
+                            x:Name="Border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4" />
+                        <ScrollViewer
+                            x:Name="PART_ContentHost"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Opacity="0.77" />

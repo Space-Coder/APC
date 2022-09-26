@@ -35,6 +35,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Deterministic>False</Deterministic>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -42,15 +43,20 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
+    <Deterministic>False</Deterministic>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
@@ -185,6 +191,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -213,6 +220,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AllDeparturesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\BorderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ChangeSecurity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\DepartureWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,26 +254,44 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Context\ApplicationDbContext.cs" />
+    <Compile Include="Converters\ListItemToStringConverter.cs" />
+    <Compile Include="Converters\StringToIntConverter.cs" />
     <Compile Include="InfoBar.xaml.cs">
       <DependentUpon>InfoBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20220906151308_Initial.cs" />
-    <Compile Include="Migrations\20220906151308_Initial.designer.cs">
-      <DependentUpon>20220906151308_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20220906193503_NullFix.cs" />
-    <Compile Include="Migrations\20220906193503_NullFix.designer.cs">
-      <DependentUpon>20220906193503_NullFix.cs</DependentUpon>
+    <Compile Include="Migrations\20220926171851_Initial.cs" />
+    <Compile Include="Migrations\20220926171851_Initial.designer.cs">
+      <DependentUpon>20220926171851_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
     <Compile Include="MVVM\Model\Cars.cs" />
     <Compile Include="MVVM\Model\Departure.cs" />
-    <Compile Include="MVVM\Model\Drivers.cs" />
     <Compile Include="MVVM\Model\Repair.cs" />
-    <Compile Include="MVVM\Model\Senior.cs" />
+    <Compile Include="MVVM\ViewModel\AdminViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AllDeparturesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\BorderViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CarsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Departures.cs" />
     <Compile Include="MVVM\ViewModel\DepartureViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ParkViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\RepairViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\SecurityViewModel.cs" />
+    <Compile Include="MVVM\View\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\AllDeparturesWindow.xaml.cs">
+      <DependentUpon>AllDeparturesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\BorderWindow.xaml.cs">
+      <DependentUpon>BorderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ChangeSecurity.xaml.cs">
+      <DependentUpon>ChangeSecurity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\DepartureWindow.xaml.cs">
       <DependentUpon>DepartureWindow.xaml</DependentUpon>
     </Compile>
@@ -254,6 +299,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\ParkWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\RepairWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\SecurityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\Colors\Primary.LightBlue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -272,6 +329,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVVM\View\ParkWindow.xaml.cs">
+      <DependentUpon>ParkWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\RepairWindow.xaml.cs">
+      <DependentUpon>RepairWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\SecurityWindow.xaml.cs">
+      <DependentUpon>SecurityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -289,6 +355,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -309,6 +376,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\apclogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

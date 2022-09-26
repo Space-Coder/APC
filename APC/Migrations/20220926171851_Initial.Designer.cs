@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220906151308_Initial")]
+    [Migration("20220926171851_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace APC.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
@@ -43,6 +43,10 @@ namespace APC.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Number")
+                        .IsUnique()
+                        .HasFilter("[Number] IS NOT NULL");
 
                     b.ToTable("Cars");
                 });
@@ -56,7 +60,7 @@ namespace APC.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("ArrivalTime")
+                    b.Property<DateTime?>("ArrivalTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CarMark")
@@ -83,7 +87,7 @@ namespace APC.Migrations
                     b.Property<int>("Tachometer")
                         .HasColumnType("int");
 
-                    b.Property<int>("TachometerEnd")
+                    b.Property<int?>("TachometerEnd")
                         .HasColumnType("int");
 
                     b.Property<int>("TrackNumber")
@@ -92,23 +96,6 @@ namespace APC.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Departures");
-                });
-
-            modelBuilder.Entity("APC.MVVM.Model.Drivers", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FIO")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Drivers");
                 });
 
             modelBuilder.Entity("APC.MVVM.Model.Repair", b =>
@@ -138,23 +125,6 @@ namespace APC.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Repair");
-                });
-
-            modelBuilder.Entity("APC.MVVM.Model.Senior", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FIO")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Seniors");
                 });
 #pragma warning restore 612, 618
         }
